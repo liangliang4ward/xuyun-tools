@@ -15,6 +15,7 @@
  */
 package com.github.xuyun.tools.ui.userid;
 
+import com.github.xuyun.tools.util.ConfigUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -34,7 +35,7 @@ import org.apache.commons.lang.StringUtils;
 public class UserIDFrame extends javax.swing.JFrame {
 
     public static final int DEFAULT_VALUE = 250;
-    
+
     private final LogCat logCat;
 
     /**
@@ -163,7 +164,21 @@ public class UserIDFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectFileActionPerformed
-        JFileChooser fileChooser = new JFileChooser(FileUtils.getUserDirectory());
+        File currentPath = FileUtils.getUserDirectory();
+
+        String tmp = ConfigUtils.get().getUserFilePath();
+        if (StringUtils.isNotBlank(tmp)) {
+            File file = new File(tmp);
+            if (file.exists()) {
+                if (file.isDirectory()) {
+                    currentPath = file;
+                } else {
+                    currentPath = file.getParentFile();
+                }
+            }
+        }
+
+        JFileChooser fileChooser = new JFileChooser(currentPath);
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int flag = fileChooser.showOpenDialog(this);
         if (flag == JFileChooser.APPROVE_OPTION) {
@@ -181,6 +196,9 @@ public class UserIDFrame extends javax.swing.JFrame {
             this.logCat.warn("文件[" + filePath + "]不存在，请重新选择！");
             return;
         }
+
+        ConfigUtils.get().setUserFilePath(srcFile.getParent());
+        ConfigUtils.save();
 
         int value = Integer.parseInt(String.valueOf(this.spnUserCount.getValue()));
         if (value < 1) {
