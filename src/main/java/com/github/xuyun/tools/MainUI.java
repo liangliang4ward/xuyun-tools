@@ -41,10 +41,29 @@ public class MainUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dlgAbout = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jlblCodePath = new javax.swing.JLabel();
         btnUserID = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
+        menuFile = new javax.swing.JMenu();
+        mitmCode = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mitmExit = new javax.swing.JMenuItem();
+
+        dlgAbout.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dlgAbout.setTitle("系统信息");
+        dlgAbout.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("宋体", 1, 14)); // NOI18N
+        jLabel1.setText("系统源代码：");
+        dlgAbout.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jlblCodePath.setText("http://");
+        dlgAbout.getContentPane().add(jlblCodePath, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 370, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("工具集");
@@ -89,6 +108,29 @@ public class MainUI extends javax.swing.JFrame {
         jButton3.setPreferredSize(new java.awt.Dimension(120, 80));
         getContentPane().add(jButton3);
 
+        menuFile.setText("文件");
+
+        mitmCode.setText("源代码");
+        mitmCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitmCodeActionPerformed(evt);
+            }
+        });
+        menuFile.add(mitmCode);
+        menuFile.add(jSeparator1);
+
+        mitmExit.setText("退出");
+        mitmExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitmExitActionPerformed(evt);
+            }
+        });
+        menuFile.add(mitmExit);
+
+        menuBar.add(menuFile);
+
+        setJMenuBar(menuBar);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -102,6 +144,19 @@ public class MainUI extends javax.swing.JFrame {
         frame.setLocationRelativeTo(this);
         frame.setVisible(true);
     }//GEN-LAST:event_btnUserIDActionPerformed
+
+    private void mitmExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitmExitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_mitmExitActionPerformed
+
+    private void mitmCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitmCodeActionPerformed
+        String src = "https://github.com/obullxl/xuyun-tools";
+        this.jlblCodePath.setText(src);
+        
+        this.dlgAbout.setSize(350, 150);
+        this.dlgAbout.setLocationRelativeTo(this);
+        this.dlgAbout.setVisible(true);
+    }//GEN-LAST:event_mitmCodeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,8 +203,16 @@ public class MainUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUserID;
+    private javax.swing.JDialog dlgAbout;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel jlblCodePath;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuFile;
+    private javax.swing.JMenuItem mitmCode;
+    private javax.swing.JMenuItem mitmExit;
     // End of variables declaration//GEN-END:variables
 }
