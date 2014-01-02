@@ -1,11 +1,5 @@
 *.class
 
-*.jar
-
-*.war
-
-*.ear
-
 /target
 
 /*.classpath
@@ -16,5 +10,4 @@
 
 /logs
 
-/xuyun-tools
 
